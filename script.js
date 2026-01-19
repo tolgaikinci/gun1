@@ -179,7 +179,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
    WHATSAPP NUMBER CONFIGURATION
 ======================================== */
 // WhatsApp numaranızı buraya girin (905XXXXXXXXX formatında)
-const WHATSAPP_NUMBER = '905XXXXXXXXX';
+const WHATSAPP_NUMBER = '905468157407';
 
 // Update all WhatsApp links
 function updateWhatsAppLinks() {
