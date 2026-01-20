@@ -2,20 +2,20 @@
    VARIABLES
 ======================================== */
 :root {
-    /* Colors - Blue Professional Theme */
-    --primary-color: #1a56db;
-    --primary-dark: #1e429f;
-    --primary-light: #3f83f8;
-    --secondary-color: #0e7490;
+    /* Colors - Warm Professional Theme */
+    --primary-color: #d97706;
+    --primary-dark: #b45309;
+    --primary-light: #f59e0b;
+    --secondary-color: #dc2626;
 
     --text-primary: #1f2937;
     --text-secondary: #4b5563;
     --text-light: #6b7280;
 
-    --bg-white: #ffffff;
-    --bg-light: #f9fafb;
-    --bg-gray: #f3f4f6;
-    --bg-dark: #111827;
+    --bg-white: #fffbf5;
+    --bg-light: #fef7ed;
+    --bg-gray: #fef3e2;
+    --bg-dark: #1c1917;
 
     --border-color: #e5e7eb;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
