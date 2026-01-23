@@ -252,6 +252,75 @@ if ('loading' in HTMLImageElement.prototype) {
 }
 
 /* ========================================
+   WEATHER WIDGET
+======================================== */
+async function fetchWeather() {
+    const weatherWidget = document.getElementById('weather-widget');
+    const weatherLoading = weatherWidget.querySelector('.weather-loading');
+    const weatherContent = weatherWidget.querySelector('.weather-content');
+    const weatherTemp = weatherWidget.querySelector('.weather-temp');
+    const weatherIcon = weatherWidget.querySelector('.weather-icon i');
+
+    try {
+        // Fetch weather data from wttr.in API
+        const response = await fetch('https://wttr.in/Istanbul?format=j1');
+        const data = await response.json();
+
+        if (data && data.current_condition && data.current_condition[0]) {
+            const current = data.current_condition[0];
+            const temp = current.temp_C;
+            const weatherCode = current.weatherCode;
+
+            // Update temperature
+            weatherTemp.textContent = `${temp}°C`;
+
+            // Update weather icon based on weather code
+            const iconClass = getWeatherIcon(weatherCode);
+            weatherIcon.className = iconClass;
+
+            // Show weather content and hide loading
+            weatherLoading.style.display = 'none';
+            weatherContent.style.display = 'flex';
+        }
+    } catch (error) {
+        console.error('Hava durumu yüklenemedi:', error);
+        // Show a default state on error
+        weatherTemp.textContent = '--°C';
+        weatherLoading.style.display = 'none';
+        weatherContent.style.display = 'flex';
+    }
+}
+
+// Get appropriate weather icon based on weather code
+function getWeatherIcon(code) {
+    const weatherCode = parseInt(code);
+
+    // Weather code mapping from wttr.in
+    if (weatherCode === 113) return 'fas fa-sun'; // Clear/Sunny
+    if (weatherCode === 116) return 'fas fa-cloud-sun'; // Partly cloudy
+    if ([119, 122].includes(weatherCode)) return 'fas fa-cloud'; // Cloudy/Overcast
+    if ([143, 248, 260].includes(weatherCode)) return 'fas fa-smog'; // Mist/Fog
+    if ([176, 263, 266, 281, 284, 293, 296, 299, 302, 305, 308, 311, 314, 317, 353, 356, 359].includes(weatherCode)) {
+        return 'fas fa-cloud-rain'; // Rain
+    }
+    if ([182, 185, 227, 230, 317, 320, 323, 326, 329, 332, 335, 338, 350, 362, 365, 368, 371, 374, 377].includes(weatherCode)) {
+        return 'fas fa-snowflake'; // Snow
+    }
+    if ([200, 386, 389, 392, 395].includes(weatherCode)) {
+        return 'fas fa-cloud-bolt'; // Thunder
+    }
+
+    return 'fas fa-cloud-sun'; // Default
+}
+
+// Initialize weather widget on page load
+document.addEventListener('DOMContentLoaded', () => {
+    fetchWeather();
+    // Refresh weather every 30 minutes
+    setInterval(fetchWeather, 30 * 60 * 1000);
+});
+
+/* ========================================
    CONSOLE MESSAGE
 ======================================== */
 console.log('%cTolgahan İkinci Portfolio', 'color: #1a56db; font-size: 24px; font-weight: bold;');

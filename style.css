@@ -244,6 +244,59 @@ img {
     cursor: pointer;
 }
 
+/* Weather Widget */
+.weather-widget {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 0.5rem 1rem;
+    background-color: var(--bg-light);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.weather-widget:hover {
+    background-color: var(--bg-gray);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.weather-loading {
+    color: var(--primary-color);
+    font-size: var(--font-size-lg);
+}
+
+.weather-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.weather-icon {
+    font-size: var(--font-size-xl);
+    color: var(--primary-color);
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.weather-temp {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.weather-location {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
 /* ========================================
    HERO
 ======================================== */
@@ -959,6 +1012,13 @@ img {
         top: var(--spacing-md);
         right: var(--spacing-md);
         font-size: var(--font-size-xl);
+    }
+
+    .weather-widget {
+        position: absolute;
+        top: calc(var(--header-height) + 0.5rem);
+        right: var(--spacing-md);
+        z-index: 50;
     }
 
     .hero {
